@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Auto Browser Agent",
+  "version": "1.0.0",
+  "description": "A user-controlled browser agent using Groq GPT-OSS 120B for page understanding and safe browser actions.",
+  "permissions": ["storage", "activeTab", "scripting", "sidePanel", "tabs"],
+  "host_permissions": ["https://api.groq.com/*", "<all_urls>"],
+  "background": {"service_worker": "background/service-worker.js", "type": "module"},
+  "action": {"default_title": "Open Auto Browser Agent"},
+  "side_panel": {"default_path": "sidepanel/index.html"},
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "js": ["content/content.js"],
+    "run_at": "document_idle"
+  }]
+}
